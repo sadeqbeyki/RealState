@@ -12,5 +12,6 @@ namespace RS.Domain.Entities.Product
         public string name { get; set; }
         public int size { get; set; }
         public int price { get; set; }
+        public string shortDiscription { get; set; }
     }
 }
