@@ -1,7 +1,7 @@
 ﻿using AppFramework.Domain;
-using ShopManagement.Domain.ProductAgg;
+using RS.Domain.Entities.ProductAgg;
 
-namespace ShopManagement.Domain.ProductCategoryAgg
+namespace RS.Domain.Entities.ProductCategoryAgg
 {
     public class ProductCategory : EntityBase
     {

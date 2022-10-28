@@ -1,15 +1,13 @@
-﻿using AppFramework.Application;
-using AppFramework.Infrastructure;
-using ShopManagement.Application.Contracts.Slide;
-using ShopManagement.Domain.SlideAgg;
+﻿using AppFramework.Infrastructure;
+using RS.Domain.Entities.SlideAgg;
 
-namespace ShopManagement.Infrastructure.EFCore.Repositories
+namespace RS.Infrastructure.Repositories
 {
     public class SlideRepository : BaseRepository<long, Slide>, ISlideRepository
     {
         private readonly ShopContext _context;
 
-        public SlideRepository(ShopContext context):base(context)
+        public SlideRepository(ShopContext context) : base(context)
         {
             _context = context;
         }
@@ -26,7 +24,7 @@ namespace ShopManagement.Infrastructure.EFCore.Repositories
                 Text = s.Text,
                 Link = s.Link,
                 BtnText = s.BtnText
-            }).FirstOrDefault(x=>x.Id==id);
+            }).FirstOrDefault(x => x.Id == id);
         }
 
         public List<SlideViewModel> GetList()
@@ -39,7 +37,7 @@ namespace ShopManagement.Infrastructure.EFCore.Repositories
                 Title = x.Title,
                 IsRemoved = x.IsRemoved,
                 CreationDate = x.CreationDate.ToFarsi()
-            }).OrderByDescending(x=>x.Id).ToList();
+            }).OrderByDescending(x => x.Id).ToList();
         }
     }
 }

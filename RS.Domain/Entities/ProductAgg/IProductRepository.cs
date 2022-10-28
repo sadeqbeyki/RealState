@@ -1,7 +1,7 @@
 ﻿using AppFramework.Domain;
 using ShopManagement.Application.Contracts.Product;
 
-namespace ShopManagement.Domain.ProductAgg
+namespace RS.Domain.Entities.ProductAgg
 {
     public interface IProductRepository : IBaseRepository<long, Product>
     {

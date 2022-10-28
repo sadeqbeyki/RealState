@@ -1,12 +1,12 @@
 ﻿using AppFramework.Domain;
-using ShopManagement.Domain.ProductAgg;
+using RS.Domain.Entities.ProductAgg;
 
-namespace ShopManagement.Domain.ProductPictureAgg
+namespace RS.Domain.Entities.ProductPictureAgg
 {
-    public class ProductPicture:EntityBase
+    public class ProductPicture : EntityBase
     {
         public long ProductId { get; private set; }
-        public string Picture{ get; private set; }
+        public string Picture { get; private set; }
         public string PictureAlt { get; private set; }
         public string PictureTitle { get; private set; }
         public bool IsRemoved { get; private set; }
@@ -24,7 +24,7 @@ namespace ShopManagement.Domain.ProductPictureAgg
         {
             ProductId = productId;
 
-            if(!string.IsNullOrWhiteSpace(picture))
+            if (!string.IsNullOrWhiteSpace(picture))
                 Picture = picture;
 
             PictureAlt = pictureAlt;
@@ -38,7 +38,7 @@ namespace ShopManagement.Domain.ProductPictureAgg
 
         public void Restore()
         {
-            IsRemoved= false;
+            IsRemoved = false;
         }
     }
 }

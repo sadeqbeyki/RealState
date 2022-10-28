@@ -1,10 +1,9 @@
 ﻿using AppFramework.Application;
 using AppFramework.Infrastructure;
 using Microsoft.EntityFrameworkCore;
-using ShopManagement.Application.Contracts.Product;
-using ShopManagement.Domain.ProductAgg;
+using RS.Domain.Entities.ProductAgg;
 
-namespace ShopManagement.Infrastructure.EFCore.Repositories
+namespace RS.Infrastructure.Repositories
 {
     public class ProductRepository : BaseRepository<long, Product>, IProductRepository
     {

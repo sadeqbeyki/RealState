@@ -1,8 +1,8 @@
 ﻿using AppFramework.Domain;
 
-namespace ShopManagement.Domain.SlideAgg
+namespace RS.Domain.Entities.SlideAgg
 {
-    public class Slide:EntityBase
+    public class Slide : EntityBase
     {
         public string Picture { get; private set; }
         public string PictureAlt { get; private set; }
@@ -28,7 +28,7 @@ namespace ShopManagement.Domain.SlideAgg
         }
         public void Edit(string picture, string pictureAlt, string pictureTitle, string heading, string title, string text, string link, string btnText)
         {
-            if(!string.IsNullOrWhiteSpace(picture))
+            if (!string.IsNullOrWhiteSpace(picture))
                 Picture = picture;
 
             PictureAlt = pictureAlt;
@@ -47,7 +47,7 @@ namespace ShopManagement.Domain.SlideAgg
         }
         public void Restore()
         {
-            IsRemoved= false;
+            IsRemoved = false;
         }
     }
 }

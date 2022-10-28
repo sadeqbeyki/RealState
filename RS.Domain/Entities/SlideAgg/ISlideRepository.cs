@@ -1,9 +1,9 @@
 ﻿using AppFramework.Domain;
 using ShopManagement.Application.Contracts.Slide;
 
-namespace ShopManagement.Domain.SlideAgg
+namespace RS.Domain.Entities.SlideAgg
 {
-    public interface ISlideRepository:IBaseRepository<long, Slide>
+    public interface ISlideRepository : IBaseRepository<long, Slide>
     {
         EditSlide GetDetails(long id);
         List<SlideViewModel> GetList();

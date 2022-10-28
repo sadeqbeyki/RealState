@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using ShopManagement.Application.Contracts.ProductPicture;
 using ShopManagement.Domain.ProductPictureAgg;
 
-namespace ShopManagement.Infrastructure.EFCore.Repositories
+namespace RS.Infrastructure.Repositories
 {
     public class ProductPictureRepository : BaseRepository<long, ProductPicture>, IProductPictureRepository
     {
