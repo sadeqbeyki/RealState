@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="C:\Users\li\source\repos\BookSale\BookSale\AppFramework\AppFramework.csproj" />
+  </ItemGroup>
+
 </Project>
