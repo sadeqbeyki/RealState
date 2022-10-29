@@ -1,16 +1,16 @@
 ﻿using AppFramework.Application;
 using AppFramework.Infrastructure;
 using Microsoft.EntityFrameworkCore;
-using ShopManagement.Application.Contracts.ProductPicture;
-using ShopManagement.Domain.ProductPictureAgg;
+using RS.Application.ProductPicture;
+using RS.Domain.Entities.ProductPictureAgg;
 
 namespace RS.Infrastructure.Repositories
 {
     public class ProductPictureRepository : BaseRepository<long, ProductPicture>, IProductPictureRepository
     {
-        private readonly ShopContext _context;
+        private readonly RealStateContext _context;
 
-        public ProductPictureRepository(ShopContext context) : base(context)
+        public ProductPictureRepository(RealStateContext context) : base(context)
         {
             _context = context;
         }

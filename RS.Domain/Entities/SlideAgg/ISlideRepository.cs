@@ -1,5 +1,5 @@
 ﻿using AppFramework.Domain;
-using ShopManagement.Application.Contracts.Slide;
+using RS.Application.Slide;
 
 namespace RS.Domain.Entities.SlideAgg
 {

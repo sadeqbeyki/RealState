@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RS.Domain", "RS.Domain\RS.D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RS.Infrastructure", "RS.Infrastructure\RS.Infrastructure.csproj", "{84610E26-4623-4B30-8197-4A28C7978EE0}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Identity", "Identity", "{91EE7F42-17FC-4CED-9009-4EDED0D3ED17}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EndPoint.WebUI", "EndPoint.WebUI\EndPoint.WebUI.csproj", "{F715AD4B-2893-4090-A8E1-831E57F0565B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppFramework", "C:\Users\li\source\repos\BookSale\BookSale\AppFramework\AppFramework.csproj", "{3FA31FDF-7CAF-4711-A476-26804C873F57}"

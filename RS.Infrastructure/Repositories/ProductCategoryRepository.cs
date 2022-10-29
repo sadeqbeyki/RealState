@@ -1,14 +1,15 @@
 ﻿using AppFramework.Application;
 using AppFramework.Infrastructure;
+using RS.Application.ProductCategory;
 using RS.Domain.Entities.ProductCategoryAgg;
 
 namespace RS.Infrastructure.Repositories
 {
     public class ProductCategoryRepository : BaseRepository<long, ProductCategory>, IProductCategoryRepository
     {
-        private readonly ShopContext _shopContext;
+        private readonly RealStateContext _shopContext;
 
-        public ProductCategoryRepository(ShopContext context) : base(context)
+        public ProductCategoryRepository(RealStateContext context) : base(context)
         {
             _shopContext = context;
         }

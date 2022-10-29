@@ -1,13 +1,15 @@
-﻿using AppFramework.Infrastructure;
+﻿using AppFramework.Application;
+using AppFramework.Infrastructure;
+using RS.Application.Slide;
 using RS.Domain.Entities.SlideAgg;
 
 namespace RS.Infrastructure.Repositories
 {
     public class SlideRepository : BaseRepository<long, Slide>, ISlideRepository
     {
-        private readonly ShopContext _context;
+        private readonly RealStateContext _context;
 
-        public SlideRepository(ShopContext context) : base(context)
+        public SlideRepository(RealStateContext context) : base(context)
         {
             _context = context;
         }

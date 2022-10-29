@@ -1,5 +1,5 @@
 ﻿using AppFramework.Domain;
-using ShopManagement.Application.Contracts.ProductPicture;
+using RS.Application.ProductPicture;
 
 namespace RS.Domain.Entities.ProductPictureAgg
 {

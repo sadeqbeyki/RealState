@@ -1,15 +1,16 @@
 ﻿using AppFramework.Application;
 using AppFramework.Infrastructure;
 using Microsoft.EntityFrameworkCore;
+using RS.Application.Product;
 using RS.Domain.Entities.ProductAgg;
 
 namespace RS.Infrastructure.Repositories
 {
     public class ProductRepository : BaseRepository<long, Product>, IProductRepository
     {
-        private readonly ShopContext _shopContext;
+        private readonly RealStateContext _shopContext;
 
-        public ProductRepository(ShopContext context) : base(context)
+        public ProductRepository(RealStateContext context) : base(context)
         {
             _shopContext = context;
         }

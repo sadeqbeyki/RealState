@@ -1,7 +1,14 @@
+using RS.Infrastructure;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddHttpContextAccessor();
+var connectionString = builder.Configuration.GetConnectionString("RealStateDB");
+ConfigureServices.Configure(builder.Services, connectionString);
+
 
 var app = builder.Build();
 

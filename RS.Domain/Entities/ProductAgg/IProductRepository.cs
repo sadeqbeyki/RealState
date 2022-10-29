@@ -1,5 +1,5 @@
 ﻿using AppFramework.Domain;
-using ShopManagement.Application.Contracts.Product;
+using RS.Application.Product;
 
 namespace RS.Domain.Entities.ProductAgg
 {
