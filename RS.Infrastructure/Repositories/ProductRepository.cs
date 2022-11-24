@@ -1,78 +1,79 @@
 ﻿using AppFramework.Application;
 using AppFramework.Infrastructure;
 using Microsoft.EntityFrameworkCore;
-using RS.Application.Product;
+using RS.Contracts.Products;
 using RS.Domain.Entities.ProductAgg;
+using System.Collections.Generic;
+using System.Linq;
 
-namespace RS.Infrastructure.Repositories
+namespace RS.Infrastructure.Repositories;
+
+public class ProductRepository : BaseRepository<long, Product>, IProductRepository
 {
-    public class ProductRepository : BaseRepository<long, Product>, IProductRepository
+    private readonly RealStateContext _shopContext;
+
+    public ProductRepository(RealStateContext context) : base(context)
     {
-        private readonly RealStateContext _shopContext;
+        _shopContext = context;
+    }
+    public EditProduct? GetDetails(long id)
+    {
+        return _shopContext.Products.Select(p => new EditProduct
+        {
+            Id = p.Id,
+            Name = p.Name,
+            Code = p.Code,
+            Slug = p.Slug,
+            CategoryId = p.CategoryId,
+            Description = p.Description,
+            Keywords = p.Keywords,
+            MetaDescription = p.MetaDescription,
+            PictureAlt = p.PictureAlt,
+            PictureTitle = p.PictureTitle,
+            ShortDescription = p.ShortDescription
+        }).FirstOrDefault(x => x.Id == id);
+    }
 
-        public ProductRepository(RealStateContext context) : base(context)
+    public List<ProductViewModel> GetProducts()
+    {
+        return _shopContext.Products.Select(x => new ProductViewModel
         {
-            _shopContext = context;
-        }
-        public EditProduct? GetDetails(long id)
-        {
-            return _shopContext.Products.Select(p => new EditProduct
-            {
-                Id = p.Id,
-                Name = p.Name,
-                Code = p.Code,
-                Slug = p.Slug,
-                CategoryId = p.CategoryId,
-                Description = p.Description,
-                Keywords = p.Keywords,
-                MetaDescription = p.MetaDescription,
-                PictureAlt = p.PictureAlt,
-                PictureTitle = p.PictureTitle,
-                ShortDescription = p.ShortDescription
-            }).FirstOrDefault(x => x.Id == id);
-        }
+            Id = x.Id,
+            Name = x.Name
+        }).ToList();
+    }
 
-        public List<ProductViewModel> GetProducts()
-        {
-            return _shopContext.Products.Select(x => new ProductViewModel
+    public Product GetProductWithCategory(long id)
+    {
+        return _shopContext.Products
+            .Include(x => x.Category)
+            .FirstOrDefault(x => x.Id == id);
+    }
+
+    public List<ProductViewModel> Search(ProductSearchModel searchModel)
+    {
+        var query = _shopContext.Products
+            .Include(x => x.Category)
+            .Select(x => new ProductViewModel
             {
                 Id = x.Id,
-                Name = x.Name
-            }).ToList();
-        }
+                Name = x.Name,
+                Category = x.Category.Name,
+                CategoryId = x.CategoryId,
+                Code = x.Code,
+                Picture = x.Picture,
+                CreationDate = x.CreationDate.ToFarsi()
+            });
 
-        public Product GetProductWithCategory(long id)
-        {
-            return _shopContext.Products
-                .Include(x => x.Category)
-                .FirstOrDefault(x => x.Id == id);
-        }
+        if (!string.IsNullOrWhiteSpace(searchModel.Name))
+            query = query.Where(x => x.Name.Contains(searchModel.Name));
 
-        public List<ProductViewModel> Search(ProductSearchModel searchModel)
-        {
-            var query = _shopContext.Products
-                .Include(x => x.Category)
-                .Select(x => new ProductViewModel
-                {
-                    Id = x.Id,
-                    Name = x.Name,
-                    Category = x.Category.Name,
-                    CategoryId = x.CategoryId,
-                    Code = x.Code,
-                    Picture = x.Picture,
-                    CreationDate = x.CreationDate.ToFarsi()
-                });
+        if (!string.IsNullOrWhiteSpace(searchModel.Code))
+            query = query.Where(x => x.Code.Contains(searchModel.Code));
 
-            if (!string.IsNullOrWhiteSpace(searchModel.Name))
-                query = query.Where(x => x.Name.Contains(searchModel.Name));
+        if (searchModel.CategoryId != 0)
+            query = query.Where(x => x.CategoryId == searchModel.CategoryId);
 
-            if (!string.IsNullOrWhiteSpace(searchModel.Code))
-                query = query.Where(x => x.Code.Contains(searchModel.Code));
-
-            if (searchModel.CategoryId != 0)
-                query = query.Where(x => x.CategoryId == searchModel.CategoryId);
-
-            return query.OrderByDescending(x => x.Id).ToList();
-        }
+        return query.OrderByDescending(x => x.Id).ToList();
     }
 }

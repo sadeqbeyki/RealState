@@ -1,9 +1,9 @@
 ﻿using AppFramework.Application;
-using RS.Application.Product;
+using RS.Contracts.Products;
 using RS.Domain.Entities.ProductAgg;
 using RS.Domain.Entities.ProductCategoryAgg;
 
-namespace RS.Infrastructure.Repositories
+namespace RS.Application
 {
     public class ProductApplication : IProductApplication
     {

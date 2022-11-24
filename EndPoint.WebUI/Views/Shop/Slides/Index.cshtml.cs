@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using RS.Application.Slide;
+using RS.Contracts.Slides;
 
 namespace EndPoint.WebUI.Views.Shop.Slides
 {

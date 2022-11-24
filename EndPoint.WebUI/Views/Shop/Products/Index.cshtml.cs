@@ -2,8 +2,8 @@ using AppFramework.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using RS.Application.Product;
-using RS.Application.ProductCategory;
+using RS.Contracts.Products;
+using RS.Contracts.ProductCategories;
 
 namespace EndPoint.WebUI.Views.Shop.Products;
 public class IndexModel : PageModel

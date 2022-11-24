@@ -1,9 +1,10 @@
 ﻿using AppFramework.Application;
-using RS.Application.ProductPicture;
+using RS.Contracts.ProductPictures;
 using RS.Domain.Entities.ProductAgg;
 using RS.Domain.Entities.ProductPictureAgg;
 
-namespace RS.Infrastructure.Repositories
+
+namespace RS.Application
 {
     public class ProductPictureApplication : IProductPictureApplication
     {

@@ -1,7 +1,7 @@
 using AppFramework.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using RS.Application.ProductCategory;
+using RS.Contracts.ProductCategories;
 
 namespace EndPoint.WebUI.Views.Shop.ProductCategories;
 //[Authorize(Roles = "1, 3")]

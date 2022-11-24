@@ -1,9 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using RS.Application.Product;
-using RS.Application.ProductCategory;
-using RS.Application.ProductPicture;
-using RS.Application.Slide;
+using RS.Application;
+using RS.Contracts.ProductPictures;
+using RS.Contracts.Products;
+using RS.Contracts.ProductCategories;
+using RS.Contracts.Slides;
 using RS.Domain.Entities.ProductAgg;
 using RS.Domain.Entities.ProductCategoryAgg;
 using RS.Domain.Entities.ProductPictureAgg;
