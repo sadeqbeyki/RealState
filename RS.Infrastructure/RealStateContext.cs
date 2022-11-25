@@ -16,7 +16,10 @@ namespace RS.Infrastructure
         public RealStateContext(DbContextOptions<RealStateContext> options) : base(options)
         {
         }
-
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            base.OnConfiguring(optionsBuilder);
+        }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             var assembly = typeof(ProductCategoryConfig).Assembly;

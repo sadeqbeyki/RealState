@@ -13,7 +13,7 @@ using RS.Infrastructure.Repositories;
 
 namespace RS.Infrastructure
 {
-    public class ConfigureServices
+    public static class ConfigureServices
     {
         public static void Configure(IServiceCollection services, string connectionString)
         {
@@ -28,12 +28,6 @@ namespace RS.Infrastructure
 
             services.AddTransient<ISlideApplication, SlideApplication>();
             services.AddTransient<ISlideRepository, SlideRepository>();
-
-            //services.AddTransient<ISideQuery, SlideQuery>();
-            //services.AddTransient<IProductCategoryQuery, ProductCategoryQuery>();
-            //services.AddTransient<IProductQuery, ProductQuery>();
-
-            //services.AddTransient<IPermissionExposer, RealStatePermissionExposer>();
 
             services.AddDbContext<RealStateContext>(x => x.UseSqlServer(connectionString));
         }

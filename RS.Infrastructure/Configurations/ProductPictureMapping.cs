@@ -2,20 +2,19 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using RS.Domain.Entities.ProductPictureAgg;
 
-namespace ShopManagement.Infrastructure.EFCore.Mapping
+namespace ShopManagement.Infrastructure.EFCore.Mapping;
+
+public class ProductPictureConfig : IEntityTypeConfiguration<ProductPicture>
 {
-    public class ProductPictureConfig : IEntityTypeConfiguration<ProductPicture>
+    public void Configure(EntityTypeBuilder<ProductPicture> builder)
     {
-        public void Configure(EntityTypeBuilder<ProductPicture> builder)
-        {
-            builder.ToTable("ProductPictures");
-            builder.HasKey(x => x.Id);
+        builder.ToTable("ProductPictures");
+        builder.HasKey(x => x.Id);
 
-            builder.Property(x => x.Picture).HasMaxLength(1000).IsRequired();
-            builder.Property(x=>x.PictureAlt).HasMaxLength(500).IsRequired();
-            builder.Property(x=>x.PictureTitle).HasMaxLength(500).IsRequired();
+        builder.Property(x => x.Picture).HasMaxLength(1000).IsRequired();
+        builder.Property(x=>x.PictureAlt).HasMaxLength(500).IsRequired();
+        builder.Property(x=>x.PictureTitle).HasMaxLength(500).IsRequired();
 
-            builder.HasOne(x => x.Product).WithMany(x=>x.ProductPictures).HasForeignKey(x=>x.ProductId);
-        }
+        builder.HasOne(x => x.Product).WithMany(x=>x.ProductPictures).HasForeignKey(x=>x.ProductId);
     }
 }

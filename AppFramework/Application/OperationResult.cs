@@ -1,32 +1,31 @@
-﻿namespace AppFramework.Application
+﻿namespace AppFramework.Application;
+
+public class OperationResult
 {
-    public class OperationResult
+    public bool IsSucceeded { get; set; }
+    public string Message { get; set; }
+
+    public OperationResult()
     {
-        public bool IsSucceeded { get; set; }
-        public string Message { get; set; }
+        IsSucceeded = false;
+    }
 
-        public OperationResult()
-        {
-            IsSucceeded = false;
-        }
+    public OperationResult Succeeded(string message = "عملیات با موفقیت انجام شد")
+    {
+        IsSucceeded = true;
+        Message = message;
+        return this;
+    }
 
-        public OperationResult Succeeded(string message = "عملیات با موفقیت انجام شد")
-        {
-            IsSucceeded = true;
-            Message = message;
-            return this;
-        }
+    public OperationResult Failed(string message)
+    {
+        IsSucceeded = false;
+        Message = message;
+        return this;
+    }
 
-        public OperationResult Failed(string message)
-        {
-            IsSucceeded = false;
-            Message = message;
-            return this;
-        }
-
-        public OperationResult Failed(object passwordNotMatch)
-        {
-            throw new NotImplementedException();
-        }
+    public OperationResult Failed(object passwordNotMatch)
+    {
+        throw new NotImplementedException();
     }
 }
