@@ -22,10 +22,12 @@ public class ProductController : Controller
         _productCategoryApplication = productCategoryApplication;
     }
     //[NeedsPermission(ShopPermissions.ListProducts)]
-    public void Index(ProductSearchModel searchModel)
+    public IActionResult Index(ProductSearchModel searchModel)
     {
         ProductCategories = new SelectList(_productCategoryApplication.GetProductCategories(), "Id", "Name");
         Products = _productApplication.Search(searchModel);
+        var products = _productApplication.GetProducts().ToList();
+        return View("Index", products);
     }
     [HttpGet]
     public PartialViewResult Create()
@@ -34,7 +36,7 @@ public class ProductController : Controller
         {
             Categories = _productCategoryApplication.GetProductCategories()
         };
-        return PartialView("./Create", command);
+        return PartialView("Create", command);
     }
     [HttpPost]
     //[NeedsPermission(ShopPermissions.CreateProduct)]

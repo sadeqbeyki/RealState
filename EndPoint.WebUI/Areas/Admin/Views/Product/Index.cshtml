@@ -2,16 +2,13 @@
 @model List<ProductViewModel>
 
 @{
-    //Layout = "Shared/_AdminLayout";
     ViewData["Title"] = "Index";
 }
-
-
 <div class="row">
     <div class="col-sm-12">
-        <h4 class="page-title pull-right">@ViewData["title"]</h4>
+        <h4 class="page-title pull-right">@ViewData["Title"]</h4>
         <p class="pull-left">
-            <a class="btn btn-success btn-lg" href="#showmodal=@Url.Page("./Index", "Create")">افزودن ملک</a>
+            <a class="btn btn-success btn-lg" href="#showmodal=@Url.Page("/Index", "Create")">افزودن ملک</a>
         </p>
     </div>
 </div>
@@ -45,6 +42,7 @@
         </div>
     </div>
 </div>*@
+
 
 <div class="row" id="ProductCategoriesDiv">
     <div class="col-md-12">
@@ -81,7 +79,7 @@
                                         <td>@item.CreationDate</td>
                                         <td>
                                             <a class="btn btn-warning btn-custom waves-effect waves-light m-b-5"
-                                           href="#showmodal=@Url.Page("./Index", "Edit", new { id = item.Id})">
+                                           href="#showmodal=@Url.Page("/Index", "Edit", new { id = item.Id})">
                                                 <i class="fa fa-edit"></i> ویرایش
                                             </a>
                                         </td>
@@ -96,14 +94,16 @@
     </div>
 </div>
 
+
 @section Scripts {
     <script src="~/adminTheme/assets/datatables/jquery.dataTables.min.js"></script>
     <script src="~/adminTheme/assets/datatables/dataTables.bootstrap.js"></script>
 
     <script type="text/javascript">
-        $(document).ready(function() {
+        $(document).ready(function () {
             $('#datatable').dataTable();
         });
     </script>
 }
+
 

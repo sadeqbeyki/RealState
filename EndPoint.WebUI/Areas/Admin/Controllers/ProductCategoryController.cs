@@ -17,14 +17,15 @@ public class ProductCategoryController : Controller
     public IActionResult Index(ProductCategorySearchModel searchModel)
     {
         ProductCategories = _productCategoryApplication.Search(searchModel);
-        return RedirectToAction("./Index");
+        var productCategory = _productCategoryApplication.GetProductCategories().ToList();
+        return View("Index",productCategory);
     }
 
 
     [HttpGet]
     public PartialViewResult Create()
     {
-        return PartialView("./Create", new CreateProductCategory());
+        return PartialView("Create", new CreateProductCategory());
     }
     [HttpPost]
     //[NeedsPermission(ShopPermissions.CreateProductCategory)]
