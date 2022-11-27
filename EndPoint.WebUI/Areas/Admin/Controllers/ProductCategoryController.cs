@@ -14,13 +14,12 @@ public class ProductCategoryController : Controller
         _productCategoryApplication = productCategoryApplication;
     }
     //[NeedsPermission(ShopPermissions.ListProductCategories)]
-    public IActionResult Index(ProductCategorySearchModel searchModel)
-    {
-        ProductCategories = _productCategoryApplication.Search(searchModel);
-        var productCategory = _productCategoryApplication.GetProductCategories().ToList();
-        return View("Index",productCategory);
-    }
 
+    public IActionResult Index(string searchString)
+    {
+        ProductCategories = _productCategoryApplication.Search(searchString);
+        return View("Index", ProductCategories);
+    }
 
     [HttpGet]
     public PartialViewResult Create()

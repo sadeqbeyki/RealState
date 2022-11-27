@@ -8,5 +8,6 @@ public interface IProductCategoryApplication
     OperationResult Edit(EditProductCategory command);
     EditProductCategory GetDetails(long id);
     List<ProductCategoryViewModel> GetProductCategories();
-    List<ProductCategoryViewModel> Search(ProductCategorySearchModel searchModel);
+    List<ProductCategoryViewModel> GetAllCategories();
+    List<ProductCategoryViewModel> Search(string searchString);
 }

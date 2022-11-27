@@ -22,7 +22,7 @@ public class ProductCategoryApplication : IProductCategoryApplication
 
         var slug = command.Slug.Slugify();
 
-        var picturePath = $"{command.Slug}";
+        var picturePath = $"/ProductCategory/{command.Slug}";
         var pictureName = _fileUploader.Upload(command.Picture, picturePath);
 
         var prodeuctCategory = new ProductCategory(command.Name, command.Description,
@@ -44,7 +44,7 @@ public class ProductCategoryApplication : IProductCategoryApplication
             return operationResult.Failed(ApplicationMessages.DuplicatedRecord);
 
         var slug = command.Slug.Slugify();
-        var picturePath = $"{command.Slug}";
+        var picturePath = $"/ProductCategory/{command.Slug}";
 
         var fileName = _fileUploader.Upload(command.Picture, picturePath);
 
@@ -54,6 +54,11 @@ public class ProductCategoryApplication : IProductCategoryApplication
 
         _productCategoryRepository.SaveChanges();
         return operationResult.Succeeded();
+    }
+
+    public List<ProductCategoryViewModel> GetAllCategories()
+    {
+        return _productCategoryRepository.GetAllCategories();
     }
 
     public EditProductCategory GetDetails(long id)
@@ -66,8 +71,8 @@ public class ProductCategoryApplication : IProductCategoryApplication
         return _productCategoryRepository.GetProductCategories();
     }
 
-    public List<ProductCategoryViewModel> Search(ProductCategorySearchModel searchModel)
+    public List<ProductCategoryViewModel> Search(string searchString)
     {
-        return _productCategoryRepository.Search(searchModel);
+        return _productCategoryRepository.Search(searchString);
     }
 }

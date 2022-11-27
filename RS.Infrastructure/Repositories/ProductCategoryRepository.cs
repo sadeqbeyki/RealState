@@ -42,6 +42,16 @@ public class ProductCategoryRepository : BaseRepository<long, ProductCategory>, 
         }).ToList();
     }
 
+    public List<ProductCategoryViewModel> GetAllCategories()
+    {
+        return _shopContext.ProductCategories.Select(c => new ProductCategoryViewModel
+        {
+            Id = c.Id,
+            Picture = c.Picture,
+            Name = c.Name,
+            CreationDate = c.CreationDate.ToFarsi()
+        }).ToList();
+    }
     public string GetSlugById(long id)
     {
         return _shopContext.ProductCategories
@@ -49,7 +59,7 @@ public class ProductCategoryRepository : BaseRepository<long, ProductCategory>, 
             .FirstOrDefault(x => x.Id == id).Slug;
     }
 
-    public List<ProductCategoryViewModel> Search(ProductCategorySearchModel searchModel)
+    public List<ProductCategoryViewModel> Search(string searchString)
     {
         var query = _shopContext.ProductCategories.Select(x => new ProductCategoryViewModel()
         {
@@ -58,8 +68,8 @@ public class ProductCategoryRepository : BaseRepository<long, ProductCategory>, 
             Picture = x.Picture,
             CreationDate = x.CreationDate.ToFarsi()
         });
-        if (!string.IsNullOrWhiteSpace(searchModel.Name))
-            query = query.Where(x => x.Name.Contains(searchModel.Name));
+        if (!string.IsNullOrWhiteSpace(searchString))
+            query = query.Where(x => x.Name.Contains(searchString));
         return query.OrderByDescending(x => x.Id).ToList();
     }
 }

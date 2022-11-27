@@ -2,7 +2,7 @@
 @model List<ProductCategoryViewModel>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "دسته بندی املاک";
 }
 
 <div class="row">
@@ -14,25 +14,26 @@
     </div>
 </div>
 
-@*<div class=" row">
+<div class="row">
     <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">جستجو در گروه محصولات</h3>
+                <h3 class="panel-title">جستجوی دسته ها</h3>
             </div>
             <div class="panel-body">
-                <form class="form-inline" role="form" method="get">
+                <form asp-controller="ProductCategory" asp-action="Index"
+                      class="form-inline" role="form" method="get">
                     <div class="form-group">
-                        <label class="sr-only" asp-for="SearchModel.Name"></label>
-                        <input class="form-control" asp-for="SearchModel.Name" placeholder="نام گروه محصولی">
+                        <label class="sr-only" title="searchString"></label>
+                        <input class="form-control" type="text" name="searchString" placeholder="نام گروه محصولی" />
+                        <button type="submit" class="btn btn-success waves-effect waves-light m-l-10">جستجو</button>
+                        <a class="btn btn-primary waves-effect waves-light m-l-10" asp-page="/Index">مشاهده همه</a>
                     </div>
-                    <button type="submit" class="btn btn-success waves-effect waves-light m-l-10">جستجو</button>
-                    <a class="btn btn-primary waves-effect waves-light m-l-10" asp-page="./Index">مشاهده همه</a>
                 </form>
             </div>
         </div>
     </div>
-</div>*@
+</div>
 
 <div class="row" id="ProductCategoriesDiv">
     <div class="col-md-12">
@@ -59,21 +60,16 @@
                                     <tr>
                                         <td>@item.Id</td>
                                         <td>
-                                            <img src="~/ProductPictures/@item.Picture" style="width: 70px; height: 70px" />
+                                            <img src="~/Images/@item.Picture" 
+                                             class="rounded-circle" width="70" height="70"
+                                             asp-append-version="true" />
                                         </td>
                                         <td>@item.Name</td>
                                         <td>@item.CreationDate</td>
                                         <td>
-
-                                            <a class="btn btn-warning pull-right m-rl-5" 
-                                            data-toggle="modal" data-target="#editCategoryModal">
-                                                <i class="fa fa-edit"></i>
-                                                ویرایش
-                                            </a>
-@*                                            <a class="btn btn-warning pull-right m-rl-5" 
-                                                href="#showmodal=@Url.Action("Edit", new { id = item.Id})">
-                                                <i class="fa fa-edit">ویرایش</i>
-                                            </a>*@
+                                            <a class="btn btn-warning pull-right m-rl-5"                                         
+                                            href="#showmodal=@Url.Action("Edit", new { id = item.Id})">
+                                            <i class="fa fa-edit"></i>ویرایش</a>
                                         </td>
                                     </tr>
                                 }
