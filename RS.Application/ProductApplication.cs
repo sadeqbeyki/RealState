@@ -26,7 +26,7 @@ namespace RS.Application
 
             var slug = command.Slug;
             var categorySlug = _productCategoryRepository.GetSlugById(command.CategoryId);
-            var path = $"{categorySlug}/{slug}";
+            var path = $"ProductCategory/{categorySlug}/{slug}";
             var picturePath = _fileUploader.Upload(command.Picture, path);
             var product = new Product(command.Name, command.Code, command.ShortDescription,
                 command.Description, picturePath, command.PictureAlt, command.PictureTitle,
@@ -48,7 +48,7 @@ namespace RS.Application
                 return operation.Failed(ApplicationMessages.DuplicatedRecord);
 
             var slug = command.Slug.Slugify();
-            var path = $"{product.Category.Slug}/{slug}";
+            var path = $"ProductCategory/{product.Category.Slug}/{slug}";
             var picturePath = _fileUploader.Upload(command.Picture, path);
 
             product.Edit(command.Name, command.Code, command.ShortDescription,

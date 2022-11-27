@@ -4,7 +4,6 @@
 @{
     ViewData["Title"] = "دسته بندی املاک";
 }
-
 <div class="row">
     <div class="col-sm-12">
         <h4 class="page-title pull-right">@ViewData["Title"]</h4>
@@ -24,8 +23,8 @@
                 <form asp-controller="ProductCategory" asp-action="Index"
                       class="form-inline" role="form" method="get">
                     <div class="form-group">
-                        <label class="sr-only" title="searchString"></label>
-                        <input class="form-control" type="text" name="searchString" placeholder="نام گروه محصولی" />
+                        
+                        <input class="form-control" type="text" name="searchString" placeholder="نوع ملک" />
                         <button type="submit" class="btn btn-success waves-effect waves-light m-l-10">جستجو</button>
                         <a class="btn btn-primary waves-effect waves-light m-l-10" asp-page="/Index">مشاهده همه</a>
                     </div>

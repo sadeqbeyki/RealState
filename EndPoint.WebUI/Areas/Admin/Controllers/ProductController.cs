@@ -12,6 +12,7 @@ public class ProductController : Controller
     public List<ProductViewModel> Products;
     public SelectList ProductCategories;
 
+
     private readonly IProductApplication _productApplication;
     private readonly IProductCategoryApplication _productCategoryApplication;
 
@@ -25,9 +26,12 @@ public class ProductController : Controller
     public IActionResult Index(ProductSearchModel searchModel)
     {
         ProductCategories = new SelectList(_productCategoryApplication.GetProductCategories(), "Id", "Name");
+        ViewBag.ProductCategories = ProductCategories;
         Products = _productApplication.Search(searchModel);
-        var products = _productApplication.GetProducts().ToList();
-        return View("Index", products);
+        ViewBag.Products = Products;
+        //var products = _productApplication.GetProducts().ToList();
+        //return View("Index", products);
+        return View("Index");
     }
     [HttpGet]
     public PartialViewResult Create()
