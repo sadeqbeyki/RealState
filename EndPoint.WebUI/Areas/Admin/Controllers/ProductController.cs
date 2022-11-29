@@ -7,7 +7,8 @@ namespace EndPoint.WebUI.Areas.Admin.Controllers;
 [Area("Admin")]
 public class ProductController : Controller
 {
-    [TempData] public string Message { get; set; }
+    [TempData]
+    public string Message { get; set; }
     public ProductSearchModel SearchModel;
     public List<ProductViewModel> Products;
     public SelectList ProductCategories;
@@ -29,8 +30,6 @@ public class ProductController : Controller
         ViewBag.ProductCategories = ProductCategories;
         Products = _productApplication.Search(searchModel);
         ViewBag.Products = Products;
-        //var products = _productApplication.GetProducts().ToList();
-        //return View("Index", products);
         return View("Index");
     }
     [HttpGet]

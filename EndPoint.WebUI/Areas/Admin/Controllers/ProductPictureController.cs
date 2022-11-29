@@ -15,16 +15,20 @@ public class ProductPictureController : Controller
 
     private readonly IProductApplication _productApplication;
     private readonly IProductPictureApplication _productPictureApplication;
-    public ProductPictureController(IProductApplication productApplication, IProductPictureApplication productPictureApplication)
+    public ProductPictureController(IProductApplication productApplication, 
+        IProductPictureApplication productPictureApplication)
     {
         _productApplication = productApplication;
         _productPictureApplication = productPictureApplication;
     }
 
-    public void Index(ProductPictureSearchModel searchModel)
+    public IActionResult Index(ProductPictureSearchModel searchModel)
     {
         Products = new SelectList(_productApplication.GetProducts(), "Id", "Name");
+        ViewBag.Products = Products;
         ProductPictures = _productPictureApplication.Search(searchModel);
+        ViewBag.ProductPictures = ProductPictures;
+        return View("Index");
     }
     [HttpGet]
     public PartialViewResult Create()
@@ -33,7 +37,7 @@ public class ProductPictureController : Controller
         {
             Products = _productApplication.GetProducts()
         };
-        return PartialView("./Create", command);
+        return PartialView("Create", command);
     }
     [HttpPost]
     public JsonResult Create(CreateProductPicture command)
@@ -59,19 +63,19 @@ public class ProductPictureController : Controller
     {
         var result = _productPictureApplication.Remove(id);
         if (result.IsSucceeded)
-            return RedirectToPage("./Index");
+            return View("Index");
 
         Message = result.Message;
-        return RedirectToPage("./Index");
+        return View("Index");
     }
     public IActionResult Restore(long id)
     {
         var result = _productPictureApplication.Restore(id);
         if (result.IsSucceeded)
-            return RedirectToPage("./Index");
+            return View("Index");
 
         Message = result.Message;
-        return RedirectToPage("./Index");
+        return View("Index");
     }
 }
 

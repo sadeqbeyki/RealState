@@ -1,7 +1,9 @@
 ﻿using AppFramework.Application;
 using AppFramework.Infrastructure;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using RS.Contracts.ProductPictures;
+using RS.Contracts.Products;
 using RS.Domain.Entities.ProductPictureAgg;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,7 +52,7 @@ public class ProductPictureRepository : BaseRepository<long, ProductPicture>, IP
                 ProductId = x.ProductId,
                 IsRemoved = x.IsRemoved
             });
-        if (searchModel.ProductId == 0)
+        if (searchModel.ProductId != 0)
             query = query.Where(x => x.ProductId == searchModel.ProductId);
         return query.OrderByDescending(x => x.Id).ToList();
     }
