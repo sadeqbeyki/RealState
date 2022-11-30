@@ -85,9 +85,9 @@ namespace RS.Application
             return operation.Succeeded();
         }
 
-        public List<ProductPictureViewModel> Search(ProductPictureSearchModel searchModel)
+        public List<ProductPictureViewModel> Search(long productId)
         {
-            return _productPictureRepository.Search(searchModel);
+            return _productPictureRepository.Search(productId);
         }
     }
 }

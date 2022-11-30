@@ -7,6 +7,6 @@ namespace RS.Domain.Entities.ProductPictureAgg
     {
         EditProductPicture GetDetails(long id);
         ProductPicture GetWithProductAndCategory(long id);
-        List<ProductPictureViewModel> Search(ProductPictureSearchModel searchModel);
+        List<ProductPictureViewModel> Search(long productId);
     }
 }

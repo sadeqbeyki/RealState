@@ -39,7 +39,7 @@ public class ProductPictureRepository : BaseRepository<long, ProductPicture>, IP
             .FirstOrDefault(x => x.Id == id);
     }
 
-    public List<ProductPictureViewModel> Search(ProductPictureSearchModel searchModel)
+    public List<ProductPictureViewModel> Search(long productId)
     {
         var query = _context.ProductPictures
             .Include(x => x.Product)
@@ -52,8 +52,8 @@ public class ProductPictureRepository : BaseRepository<long, ProductPicture>, IP
                 ProductId = x.ProductId,
                 IsRemoved = x.IsRemoved
             });
-        if (searchModel.ProductId != 0)
-            query = query.Where(x => x.ProductId == searchModel.ProductId);
+        if (productId != 0)
+            query = query.Where(x => x.ProductId == productId);
         return query.OrderByDescending(x => x.Id).ToList();
     }
 }

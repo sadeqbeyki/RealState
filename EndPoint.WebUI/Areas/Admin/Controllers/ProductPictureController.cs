@@ -22,13 +22,14 @@ public class ProductPictureController : Controller
         _productPictureApplication = productPictureApplication;
     }
 
-    public IActionResult Index(ProductPictureSearchModel searchModel)
+    public IActionResult Index(long productId)
     {
         Products = new SelectList(_productApplication.GetProducts(), "Id", "Name");
         ViewBag.Products = Products;
-        ProductPictures = _productPictureApplication.Search(searchModel);
-        ViewBag.ProductPictures = ProductPictures;
-        return View("Index");
+        ProductPictures = _productPictureApplication.Search(productId);
+        //ViewBag.ProductPictures = ProductPictures;
+
+        return View("Index", ProductPictures);
     }
     [HttpGet]
     public PartialViewResult Create()
@@ -59,23 +60,23 @@ public class ProductPictureController : Controller
         return new JsonResult(result);
     }
 
-    public IActionResult Remove(long id)
+    public JsonResult Remove(long id)
     {
         var result = _productPictureApplication.Remove(id);
         if (result.IsSucceeded)
-            return View("Index");
+            return new JsonResult(result);
 
         Message = result.Message;
-        return View("Index");
+        return new JsonResult(result);
     }
     public IActionResult Restore(long id)
     {
         var result = _productPictureApplication.Restore(id);
         if (result.IsSucceeded)
-            return View("Index");
+            return new JsonResult(result);
 
         Message = result.Message;
-        return View("Index");
+        return new JsonResult(result);
     }
 }
 

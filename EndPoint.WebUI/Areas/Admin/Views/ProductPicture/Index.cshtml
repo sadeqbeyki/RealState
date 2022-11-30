@@ -24,8 +24,8 @@
                 <form asp-controller="ProductPicture" asp-action="Index"
                 class="form-inline" role="form" method="get">
                     <div class="form-group">
-                        <label class="sr-only" asp-for="ProductId"></label>
-                        <select class="form-control" asp-for="ProductId" asp-items="ViewBag.Products">
+                  <label class="sr-only" ></label>
+                        <select class="form-control" name="productId" asp-items="ViewBag.Products">
                             <option value="0">ملک</option>
                         </select>
                     </div>
@@ -57,7 +57,7 @@
                                     <th>عملیات</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody data-action="Refresh">
                                 @foreach (var item in Model)
                                 {
                                     <tr>
