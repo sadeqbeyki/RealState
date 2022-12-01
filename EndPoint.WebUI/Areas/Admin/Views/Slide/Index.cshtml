@@ -1,17 +1,15 @@
-﻿
-@using RS.Contracts.Slides;
+﻿@using RS.Contracts.Slides;
 @model List<SlideViewModel>
 
 @{
-    Layout = "Shared/_AdminLayout";
     ViewData["Title"] = "مدیریت اسلاید";
 }
 
 <div class="row">
     <div class="col-sm-12">
-        <h4 class="page-title pull-right">@ViewData["title"]</h4>
+        <h4 class="page-title pull-right">@ViewData["Title"]</h4>
         <p class="pull-left">
-            <a class="btn btn-success btn-lg" href="#showmodal=@Url.Page("./Index", "Create")">ایجاد اسلاید جدید</a>
+            <a class="btn btn-success btn-lg" href="#showmodal=@Url.Action("Create")">ایجاد اسلاید جدید</a>
         </p>
     </div>
 </div>
@@ -43,7 +41,7 @@
                                     <tr>
                                         <td>@item.Id</td>
                                         <td>
-                                            <img src="~/ProductPictures/@item.Picture" style="width: 70px; height: 70px" />
+                                            <img src="~/Images/@item.Picture" style="width: 70px; height: 70px" />
                                         </td>
                                         <td>@item.Heading</td>
                                         <td>@item.Title</td>
@@ -61,17 +59,17 @@
                                         <td>@item.CreationDate</td>
                                         <td>
                                             <a class="btn btn-warning waves-effect waves-light m-b-5"
-                                           href="#showmodal=@Url.Page("./Index", "Edit", new { id = item.Id})">
+                                           href="#showmodal=@Url.Action("Edit", new { id = item.Id})">
                                                 <i class="fa fa-edit"></i> ویرایش
                                             </a>
                                             @if (!item.IsRemoved)
                                             {
-                                                <a asp-page="./Index" asp-page-handler="Remove" asp-route-id="@item.Id"
+                                                <a asp-controller="Slide" asp-action="Remove" asp-route-id="@item.Id"
                                            class="btn btn-danger waves-effect waves-light m-b-5">حذف</a>
                                             }
                                             else
                                             {
-                                                <a asp-page="./Index" asp-page-handler="Restore" asp-route-id="@item.Id"
+                                                <a asp-controller="Slide" asp-action="Restore" asp-route-id="@item.Id"
                                            class="btn btn-success waves-effect waves-light m-b-5">بازیابی</a>
                                             }
                                         </td>

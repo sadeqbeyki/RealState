@@ -16,15 +16,16 @@ public class SlideController : Controller
         _slideApplication = slideApplication;
     }
 
-    public void Index()
+    public IActionResult Index()
     {
         Slides = _slideApplication.GetList();
+        return View("Index", Slides);
     }
     [HttpGet]
     public PartialViewResult Create()
     {
         var command = new CreateSlide();
-        return PartialView("./Create", command);
+        return PartialView("Create", command);
     }
     [HttpPost]
     public JsonResult Create(CreateSlide command)
@@ -44,20 +45,20 @@ public class SlideController : Controller
         var result = _slideApplication.Edit(command);
         return new JsonResult(result);
     }
-    public IActionResult OnGetRemove(long id)
+    public IActionResult Remove(long id)
     {
         var result = _slideApplication.Remove(id);
         if (result.IsSucceeded)
-            return RedirectToPage("./Index");
+            return RedirectToAction("Index");
         Message = result.Message;
-        return RedirectToPage("./Index");
+        return RedirectToAction("Index");
     }
-    public IActionResult OnGetRestore(long id)
+    public IActionResult Restore(long id)
     {
         var result = _slideApplication.Restore(id);
         if (result.IsSucceeded)
-            return RedirectToPage("./Index");
+            return RedirectToAction("Index"); 
         Message = result.Message;
-        return RedirectToPage("./Index");
+        return RedirectToAction("Index");
     }
 }
