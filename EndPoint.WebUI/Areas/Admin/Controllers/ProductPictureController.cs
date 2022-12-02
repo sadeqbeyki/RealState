@@ -6,7 +6,7 @@ using RS.Contracts.Products;
 namespace EndPoint.WebUI.Areas.Admin.Controllers;
 [Area("Admin")]
 public class ProductPictureController : Controller
-    {
+{
     [TempData]
     public string Message { get; set; }
     public ProductPictureSearchModel SearchModel;
@@ -15,7 +15,7 @@ public class ProductPictureController : Controller
 
     private readonly IProductApplication _productApplication;
     private readonly IProductPictureApplication _productPictureApplication;
-    public ProductPictureController(IProductApplication productApplication, 
+    public ProductPictureController(IProductApplication productApplication,
         IProductPictureApplication productPictureApplication)
     {
         _productApplication = productApplication;
@@ -60,23 +60,23 @@ public class ProductPictureController : Controller
         return new JsonResult(result);
     }
 
-    public JsonResult Remove(long id)
+    public IActionResult Remove(long id)
     {
         var result = _productPictureApplication.Remove(id);
         if (result.IsSucceeded)
-            return new JsonResult(result);
-
+            return RedirectToAction("Index");
         Message = result.Message;
-        return new JsonResult(result);
+        return RedirectToAction("Index");
+
     }
     public IActionResult Restore(long id)
     {
         var result = _productPictureApplication.Restore(id);
         if (result.IsSucceeded)
-            return new JsonResult(result);
+            return RedirectToAction("Index");
 
         Message = result.Message;
-        return new JsonResult(result);
+        return RedirectToAction("Index");
     }
 }
 
