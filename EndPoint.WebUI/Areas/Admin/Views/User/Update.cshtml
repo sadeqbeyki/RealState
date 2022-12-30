@@ -1,0 +1,46 @@
+﻿@using EndPoint.WebUI.Areas.Admin.Models.Identity;
+@model UpdateUserViewModel
+
+@{
+    ViewData["Title"] = "Update";
+}
+
+<form asp-action="Update" asp-controller="User" method="post">
+    <div asp-validation-summary="All"></div>
+    <div class="mb-3">
+        <label asp-for="UserName" class="form-label">UserName</label>
+        <input type="text" asp-for="UserName" class="form-control" maxlength="50">
+        <span asp-validation-for=UserName></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="FirstName" class="form-label">First Name</label>
+        <input type="text" asp-for="FirstName" class="form-control" maxlength="50">
+        <span asp-validation-for=FirstName></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="LastName" class="form-label">Last Name</label>
+        <input type="text" asp-for="LastName" class="form-control" maxlength="50">
+        <span asp-validation-for=LastName></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="BirthDate" class="form-label">Birth Date</label>
+        <input type="text" asp-for="BirthDate" class="form-control" maxlength="50">
+        <span asp-validation-for=BirthDate></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label">Email</label>
+        <input type="text" asp-for="Email" class="form-control" maxlength="256">
+        <span asp-validation-for=Email></span>
+    </div>
+@*    <div class="mb-3">
+        <label asp-for="Password" class="form-label">Password</label>
+        <input type="text" asp-for="Password" class="form-control" maxlength="500">
+        <span asp-validation-for=Password></span>
+    </div>*@
+    <input type="hidden" asp-for="Id" value="@Model.Id" />
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+
+

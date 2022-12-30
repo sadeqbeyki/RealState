@@ -1,0 +1,37 @@
+﻿@using EndPoint.WebUI.Areas.Admin.Models.Identity;
+@model List<AppUser>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div>
+    <a asp-controller="User" asp-action="Create">Add User</a>
+</div>
+<br />
+
+<table class="table table-bordered table-striped">
+    <tr>
+        <th>Full Name</th>
+        <th>User Name</th>
+        <th>Email</th>
+        <th>Details</th>
+    </tr>
+    @if (Model?.Any() == true)
+    {
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.FirstName @item.LastName</td>
+                <td>@item.UserName</td>
+                <td>@item.Email</td>
+                <td>
+                    <a asp-controller="User" asp-action="Update" asp-route-id="@item.Id">Update</a>
+                    |
+                    <a asp-controller="User" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    |
+                    <a asp-controller="User" asp-action="AddToRole" asp-route-id="@item.Id" asp-route-roleName="admin">Make it admin</a>
+                </td>
+            </tr>
+        }
+    }
+</table>
