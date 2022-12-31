@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace EndPoint.WebUI.Areas.Admin.Models.Identity;
+namespace EndPoint.WebUI.Models;
 
 public class AppLoginViewModel
 {

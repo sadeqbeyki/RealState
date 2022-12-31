@@ -1,4 +1,5 @@
 ﻿using EndPoint.WebUI.Areas.Admin.Models.Identity;
+using EndPoint.WebUI.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
