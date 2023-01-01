@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EndPoint.WebUI.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class RoleController : Controller
     {
         private readonly RoleManager<AppIdentityRole> _roleManager;

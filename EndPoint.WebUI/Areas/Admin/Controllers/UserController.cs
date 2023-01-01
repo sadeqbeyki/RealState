@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EndPoint.WebUI.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class UserController : Controller
     {
         private readonly UserManager<AppUser> _userManager;
