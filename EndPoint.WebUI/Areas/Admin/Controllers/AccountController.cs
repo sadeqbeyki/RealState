@@ -1,9 +1,9 @@
-﻿using EndPoint.WebUI.Areas.Admin.Models.Identity;
-using EndPoint.WebUI.Models;
+﻿using EndPoint.WebUI.Areas.Admin.Models;
+using EndPoint.WebUI.Areas.Admin.Models.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
-namespace EndPoint.WebUI.Controllers
+namespace EndPoint.WebUI.Areas.Admin.Controllers
 {
     public class AccountController : Controller
     {
@@ -31,10 +31,7 @@ namespace EndPoint.WebUI.Controllers
             if (ModelState.IsValid)
             {
                 AppUser user = await _userManager.FindByNameAsync(model.Name);
-                if (user == null)
-                {
-                    user = await _userManager.FindByEmailAsync(model.Name);
-                }
+                user ??= await _userManager.FindByEmailAsync(model.Name);
                 if (user != null)
                 {
                     await _signInManager.SignInAsync(user, isPersistent: false);

@@ -5,16 +5,16 @@
     ViewData["Title"] = "Index";
 }
 <div>
-    <a asp-controller="User" asp-action="Create">Add User</a>
+    <a asp-controller="User" asp-action="Create">افزودن کاربر</a>
 </div>
 <br />
 
 <table class="table table-bordered table-striped">
     <tr>
-        <th>Full Name</th>
-        <th>User Name</th>
-        <th>Email</th>
-        <th>Details</th>
+        <th>نام کامل</th>
+        <th>نام کاربری</th>
+        <th>ایمیل</th>
+        <th>جزئیات</th>
     </tr>
     @if (Model?.Any() == true)
     {
@@ -25,11 +25,11 @@
                 <td>@item.UserName</td>
                 <td>@item.Email</td>
                 <td>
-                    <a asp-controller="User" asp-action="Update" asp-route-id="@item.Id">Update</a>
+                    <a asp-controller="User" asp-action="Update" asp-route-id="@item.Id">بروزرسانی</a>
                     |
-                    <a asp-controller="User" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a asp-controller="User" asp-action="Delete" asp-route-id="@item.Id">حذف</a>
                     |
-                    <a asp-controller="User" asp-action="AddToRole" asp-route-id="@item.Id" asp-route-roleName="admin">Make it admin</a>
+                    <a asp-controller="User" asp-action="AddToRole" asp-route-id="@item.Id" asp-route-roleName="admin">دسترسی مدیریت</a>
                 </td>
             </tr>
         }
