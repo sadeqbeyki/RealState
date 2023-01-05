@@ -22,7 +22,3 @@ public class CreateUserViewModel
     [MaxLength(50)]
     public string Password { get; set; }
 }
-public class UpdateUserViewModel : CreateUserViewModel
-{
-    public int Id { get; set; }
-}
