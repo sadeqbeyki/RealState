@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using RS.Contracts.Slides;
 
 namespace EndPoint.WebUI.Areas.Admin.Controllers;
 [Area("Admin")]
+[Authorize]
 public class SlideController : Controller
 {
     [TempData]
