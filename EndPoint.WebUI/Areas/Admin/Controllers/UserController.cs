@@ -19,12 +19,13 @@ namespace EndPoint.WebUI.Areas.Admin.Controllers
             var users = _userManager.Users.Take(50).ToList();
             return View(users);
         }
-        public IActionResult Create()
+        [HttpGet]
+        public PartialViewResult Create()
         {
-            return View();
+            return PartialView("Create");
         }
         [HttpPost]
-        public IActionResult Create(CreateUserViewModel model)
+        public JsonResult Create(CreateUserViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -39,7 +40,7 @@ namespace EndPoint.WebUI.Areas.Admin.Controllers
                 var result = _userManager.CreateAsync(user, model.Password).Result;
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index");
+                    return new JsonResult(result);
                 }
                 else
                 {
@@ -49,7 +50,7 @@ namespace EndPoint.WebUI.Areas.Admin.Controllers
                     }
                 }
             }
-            return View(model);
+            return new JsonResult(model);
         }
         [HttpGet]
         public IActionResult Update(int id)

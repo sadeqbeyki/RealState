@@ -9,46 +9,62 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
         <h4 class="modal-title">افزودن کاربر جدید</h4>
     </div>
-    <form asp-action="Create" asp-controller="User"
+    <form asp-controller="User" asp-action="Create"
           method="post"
           data-ajax="true"
           data-callback=""
           data-action="Refresh"
           enctype="multipart/form-data">
         <div asp-validation-summary="All"></div>
-        <div class="mb-3">
-            <label asp-for="UserName" class="form-label">UserName</label>
-            <input type="text" asp-for="UserName" class="form-control" maxlength="50">
-            <span asp-validation-for=UserName></span>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="FirstName" class="form-label">نام</label>
+                        <input type="text" asp-for="FirstName" class="form-control" maxlength="50">
+                        <span asp-validation-for=FirstName></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="LastName" class="form-label">نام خانوادگی</label>
+                        <input type="text" asp-for="LastName" class="form-control" maxlength="50">
+                        <span asp-validation-for=LastName></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="UserName" class="form-label">نام کاربری</label>
+                        <input type="text" asp-for="UserName" class="form-control" maxlength="50">
+                        <span asp-validation-for=UserName></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Password" class="form-label">گذرواژه</label>
+                        <input type="text" asp-for="Password" class="form-control" maxlength="500">
+                        <span asp-validation-for=Password></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Email" class="form-label">ایمیل</label>
+                        <input type="text" asp-for="Email" class="form-control" maxlength="256">
+                        <span asp-validation-for=Email></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="BirthDate" class="form-label">تاریخ تولد</label>
+                        <input type="text" asp-for="BirthDate" class="form-control" maxlength="50">
+                        <span asp-validation-for=BirthDate></span>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="mb-3">
-            <label asp-for="FirstName" class="form-label">First Name</label>
-            <input type="text" asp-for="FirstName" class="form-control" maxlength="50">
-            <span asp-validation-for=FirstName></span>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">بستن</button>
+            <button type="submit" class="btn btn-info waves-effect waves-light">ایجاد</button>
         </div>
-        <div class="mb-3">
-            <label asp-for="LastName" class="form-label">Last Name</label>
-            <input type="text" asp-for="LastName" class="form-control" maxlength="50">
-            <span asp-validation-for=LastName></span>
-        </div>
-        <div class="mb-3">
-            <label asp-for="BirthDate" class="form-label">Birth Date</label>
-            <input type="text" asp-for="BirthDate" class="form-control" maxlength="50">
-            <span asp-validation-for=BirthDate></span>
-        </div>
-        <div class="mb-3">
-            <label asp-for="Email" class="form-label">Email</label>
-            <input type="text" asp-for="Email" class="form-control" maxlength="256">
-            <span asp-validation-for=Email></span>
-        </div>
-        <div class="mb-3">
-            <label asp-for="Password" class="form-label">Password</label>
-            <input type="text" asp-for="Password" class="form-control" maxlength="500">
-            <span asp-validation-for=Password></span>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
-
-
-
