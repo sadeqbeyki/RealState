@@ -21,4 +21,7 @@ public class CreateUserViewModel
     [Required]
     [MaxLength(50)]
     public string Password { get; set; }
+
+    public string ReturnUrl { get; set; } = "/";
+
 }
