@@ -11,25 +11,24 @@ using RS.Domain.Entities.ProductPictureAgg;
 using RS.Domain.Entities.SlideAgg;
 using RS.Infrastructure.Repositories;
 
-namespace RS.Infrastructure
+namespace RS.Infrastructure;
+
+public static class ConfigureServices
 {
-    public static class ConfigureServices
+    public static void Configure(IServiceCollection services, string connectionString)
     {
-        public static void Configure(IServiceCollection services, string connectionString)
-        {
-            services.AddTransient<IProductCategoryApplication, ProductCategoryApplication>();
-            services.AddTransient<IProductCategoryRepository, ProductCategoryRepository>();
+        services.AddTransient<IProductCategoryApplication, ProductCategoryApplication>();
+        services.AddTransient<IProductCategoryRepository, ProductCategoryRepository>();
 
-            services.AddTransient<IProductRepository, ProductRepository>();
-            services.AddTransient<IProductApplication, ProductApplication>();
+        services.AddTransient<IProductRepository, ProductRepository>();
+        services.AddTransient<IProductApplication, ProductApplication>();
 
-            services.AddTransient<IProductPictureRepository, ProductPictureRepository>();
-            services.AddTransient<IProductPictureApplication, ProductPictureApplication>();
+        services.AddTransient<IProductPictureRepository, ProductPictureRepository>();
+        services.AddTransient<IProductPictureApplication, ProductPictureApplication>();
 
-            services.AddTransient<ISlideApplication, SlideApplication>();
-            services.AddTransient<ISlideRepository, SlideRepository>();
+        services.AddTransient<ISlideApplication, SlideApplication>();
+        services.AddTransient<ISlideRepository, SlideRepository>();
 
-            services.AddDbContext<RealStateContext>(x => x.UseSqlServer(connectionString));
-        }
+        services.AddDbContext<RealStateContext>(x => x.UseSqlServer(connectionString));
     }
 }
