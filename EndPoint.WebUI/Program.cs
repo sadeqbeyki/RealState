@@ -1,6 +1,7 @@
 using AppFramework.Application;
 using EndPoint.WebUI;
 using EndPoint.WebUI.Areas.Admin.Models.Identity;
+using EndPoint.WebUI.Areas.Admin.Models.Identity.Auth;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using RS.Infrastructure;
@@ -28,6 +29,7 @@ c.UseSqlServer(builder.Configuration.GetConnectionString("AppIdentity")));
 
 builder.Services.AddScoped<IPasswordValidator<AppUser>, AppPasswordValidator>();
 builder.Services.AddScoped<IUserValidator<AppUser>, AppUserValidator>();
+builder.Services.AddTransient<IAuthHelper, AuthHelper>();
 
 builder.Services.AddTransient<IFileUploader, FileUploader>();
 var connectionString = builder.Configuration.GetConnectionString("RealStateDB");
