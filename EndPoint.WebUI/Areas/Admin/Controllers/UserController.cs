@@ -53,7 +53,7 @@ public class UserController : Controller
         return new JsonResult(model);
     }
     [HttpGet]
-    public JsonResult Update(int id)
+    public PartialViewResult Update(int id)
     {
         var user = _userManager.FindByIdAsync(id.ToString()).Result;
         if (user != null)
@@ -67,12 +67,12 @@ public class UserController : Controller
                 Email = user.Email,
                 BirthDate = user.BirthDate
             };
-            return new JsonResult(model);
+            return PartialView("Update", model);
         }
-        return new JsonResult ("Error");
+        return PartialView("Error");
     }
     [HttpPost]
-    public IActionResult Update(int id, UpdateUserViewModel model)
+    public JsonResult Update(int id, UpdateUserViewModel model)
     {
         var user = _userManager.FindByIdAsync(id.ToString()).Result;
         if (user != null)
@@ -86,7 +86,7 @@ public class UserController : Controller
             var result = _userManager.UpdateAsync(user).Result;
             if (result.Succeeded)
             {
-                return RedirectToAction("Index");
+                return new JsonResult("Index");
             }
             else
             {
@@ -95,9 +95,9 @@ public class UserController : Controller
                     ModelState.AddModelError(item.Code, item.Description);
                 }
             }
-            return View(model);
+            return new JsonResult(model);
         }
-        return NotFound();
+        return  new JsonResult("Index");
     }
     public IActionResult Delete(int id)
     {
