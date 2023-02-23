@@ -2,7 +2,7 @@
 @model List<AppUser>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = " مدیریت کاربران ";
 }
 
 <div class="row">
@@ -42,9 +42,13 @@
                                             <td>@item.UserName</td>
                                             <td>@item.Email</td>
                                             <td>
-                                                <a asp-controller="User" asp-action="Update" asp-route-id="@item.Id">بروزرسانی</a>
+                                                <a class="btn btn-warning waves-effect waves-light m-b-5"
+                                                    href="#showmodal=@Url.Action("Update", new { id = item.Id})">
+                                                    <i class="fa fa-edit"></i> ویرایش
+                                                </a>
                                                 |
-                                                <a asp-controller="User" asp-action="Delete" asp-route-id="@item.Id">حذف</a>
+                                                <a class="btn btn-danger waves-effect waves-light m-b-5"
+                                                asp-controller="User" asp-action="Delete" asp-route-id="@item.Id">حذف</a>
                                                 |
                                                 <a asp-controller="User" asp-action="AddToRole" asp-route-id="@item.Id" asp-route-roleName="admin">دسترسی مدیریت</a>
                                             </td>

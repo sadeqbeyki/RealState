@@ -86,7 +86,7 @@ public class UserController : Controller
             var result = _userManager.UpdateAsync(user).Result;
             if (result.Succeeded)
             {
-                return new JsonResult("Index");
+                return new JsonResult(result);
             }
             else
             {
