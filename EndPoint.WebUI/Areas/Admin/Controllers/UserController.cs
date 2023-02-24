@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
+
 namespace EndPoint.WebUI.Areas.Admin.Controllers;
 
 [Area("Admin")]
@@ -40,7 +41,7 @@ public class UserController : Controller
             var result = _userManager.CreateAsync(user, model.Password).Result;
             if (result.Succeeded)
             {
-                return new JsonResult(result);
+                return Json(result);
             }
             else
             {
@@ -72,7 +73,7 @@ public class UserController : Controller
         return PartialView("Error");
     }
     [HttpPost]
-    public JsonResult Update(int id, UpdateUserViewModel model)
+    public IActionResult Update(int id, UpdateUserViewModel model)
     {
         var user = _userManager.FindByIdAsync(id.ToString()).Result;
         if (user != null)
@@ -86,7 +87,7 @@ public class UserController : Controller
             var result = _userManager.UpdateAsync(user).Result;
             if (result.Succeeded)
             {
-                return new JsonResult(result);
+                return Json(result);
             }
             else
             {
@@ -97,7 +98,7 @@ public class UserController : Controller
             }
             return new JsonResult(model);
         }
-        return  new JsonResult("Index");
+        return NotFound("Index");
     }
     public IActionResult Delete(int id)
     {
